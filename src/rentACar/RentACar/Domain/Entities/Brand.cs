@@ -17,6 +17,7 @@ public class Brand : Entity<Guid>
 
     public Brand(Guid id, string name)
     {
-        
+        Id = id;
+        Name = name;
     }
 }
