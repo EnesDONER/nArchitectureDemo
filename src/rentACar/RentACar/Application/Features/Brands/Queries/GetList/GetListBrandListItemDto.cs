@@ -1,4 +1,4 @@
-﻿namespace Application.Features.Brands.Queries;
+﻿namespace Application.Features.Brands.Queries.GetList;
 
 public class GetListBrandListItemDto
 {
