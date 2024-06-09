@@ -1,4 +1,6 @@
-﻿using Core.CrossCuttingConcerns.Rules;
+﻿using Core.Application.Pipelines.Validation;
+using Core.CrossCuttingConcerns.Rules;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -9,11 +11,16 @@ namespace Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
             services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinesRules));
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+
+                configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
             });
 
             return services;
