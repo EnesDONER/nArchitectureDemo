@@ -1,18 +1,20 @@
 ﻿using Core.Persistence.Repositories;
 
 namespace Domain.Entities;
-public class Brand : Entity<Guid>
+
+public class Transmission : Entity<Guid>
 {
     public string Name { get; set; }
 
     public virtual ICollection<Model> Models { get; set; }
 
-    public Brand()
+    public Transmission()
     {
         Models = new HashSet<Model>();
     }
 
-    public Brand(Guid id, string name)
+    public Transmission(Guid id, string name)
+        : this()
     {
         Id = id;
         Name = name;
